@@ -10,10 +10,13 @@ import com.aliyun.oss.model.ObjectListing;
 import org.apache.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+
 import java.io.*;
 import java.util.List;
 
 @SpringBootApplication
+@EnableDiscoveryClient
 public class GwsWebApplication {
 	static Logger logger = Logger.getLogger(GwsWebApplication.class);
 
