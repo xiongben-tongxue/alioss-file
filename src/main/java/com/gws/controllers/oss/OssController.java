@@ -43,7 +43,7 @@ public class OssController extends BaseController {
     }
 
     /**
-     * 单文件上传
+     * 上传字符串
      * @param stringFile
      * @param bucket
      * @return
