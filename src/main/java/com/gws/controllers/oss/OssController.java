@@ -43,6 +43,22 @@ public class OssController extends BaseController {
     }
 
     /**
+     * 单文件上传
+     * @param stringFile
+     * @param bucket
+     * @return
+     */
+    @RequestMapping("uploadStringFile")
+    public JsonResult uploadStringFile(@RequestParam String stringFile, @RequestParam String bucket){
+
+        String fileUrl = aliossService.uploadStringFile(stringFile, bucket);
+        Map<String,String> result = new HashMap<>();
+        result.put("fileUrl",fileUrl);
+
+        return success(result);
+    }
+
+    /**
      *
      * OSSObject实例包含文件所在的存储空间（Bucket）、文件的名称、Object Metadata以及一个输入流；
      * 现将流返回。

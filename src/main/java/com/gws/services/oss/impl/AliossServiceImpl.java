@@ -93,6 +93,45 @@ public class AliossServiceImpl implements AliossService{
     }
 
     /**
+     * 上传一个字符串
+     *
+     * @param file
+     * @param bucket
+     * @return
+     */
+    @Override
+    public String uploadStringFile(String file, String bucket) {
+        if (StringUtils.isEmpty(file) || StringUtils.isEmpty(bucket)) {
+            return null;
+        }
+
+        StringBuilder key = new StringBuilder();
+
+        String fileName = file;
+        String postfix = getPostfix(fileName);
+
+        if (!StringUtils.isEmpty(postfix)) {
+            key.append(postfix).append("/");
+        }
+        key.append(UUID.randomUUID().toString());
+        if (!StringUtils.isEmpty(postfix)) {
+            key.append(".").append(postfix);
+        }
+        String fixKey = String.valueOf(key);
+        // 创建OSSClient实例
+        OSSClient ossClient = new OSSClient(ossEndpoint, ossAccessKeyId, ossAccessKeySecret);
+
+        ossClient.putObject(bucket, fixKey, new ByteArrayInputStream(file.getBytes()));
+        // 关闭client
+        ossClient.shutdown();
+
+        StringBuffer stringBuffer = new StringBuffer();
+        StringBuffer downCdnHttpsHost = stringBuffer.append(http).append(bucket).append(cdnHttpsHost);
+
+        return new StringBuffer().append(downCdnHttpsHost).append("/").append(key).toString();
+    }
+
+    /**
      * 流式下载
      *
      * @param key

@@ -21,6 +21,13 @@ public interface AliossService {
     String uploadFile(MultipartFile file, String bucket);
 
     /**
+     * 上传一个字符串
+     * @param file
+     * @param bucket
+     * @return
+     */
+    String uploadStringFile(String file, String bucket);
+    /**
      * 流式下载
      * @param bucket 存储空间
      * @param key 存储的key
@@ -36,4 +43,6 @@ public interface AliossService {
      * @return
      */
     List<String> uploadFiles(MultipartFile[] files, String bucket);
+
+
 }
