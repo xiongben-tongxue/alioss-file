@@ -113,7 +113,7 @@ public class AliossServiceImpl implements AliossService{
         if (!StringUtils.isEmpty(postfix)) {
             key.append(postfix).append("/");
         }
-        //key.append(UUID.randomUUID().toString());
+        key.append(UUID.randomUUID().toString());
         if (!StringUtils.isEmpty(postfix)) {
             key.append(".").append(postfix);
         }
