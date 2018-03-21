@@ -49,7 +49,7 @@ public class OssController extends BaseController {
      * @return
      */
     @RequestMapping("uploadStringFile")
-    public JsonResult uploadStringFile(@RequestParam String stringFile, @RequestParam String bucket){
+    public JsonResult uploadStringFile(@RequestParam("stringFile") String stringFile, @RequestParam("bucket") String bucket){
 
         String fileUrl = aliossService.uploadStringFile(stringFile, bucket);
         Map<String,String> result = new HashMap<>();
