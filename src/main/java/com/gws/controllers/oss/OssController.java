@@ -3,14 +3,18 @@ package com.gws.controllers.oss;
 import com.gws.controllers.BaseController;
 import com.gws.controllers.JsonResult;
 import com.gws.services.oss.AliossService;
+import com.gws.utils.json.JsonParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * ucloud的处理文件的接口
@@ -29,9 +33,11 @@ public class OssController extends BaseController {
      * @return
      */
     @RequestMapping("uploadFile")
-    public JsonResult uploadFile(@RequestParam("file") MultipartFile file, String bucket){
+    public JsonResult uploadFile(@RequestPart("file") MultipartFile file, @RequestParam String bucket){
 
-        String result = aliossService.uploadFile(file, bucket);
+        String fileUrl = aliossService.uploadFile(file, bucket);
+        Map<String,String> result = new HashMap<>();
+        result.put("fileUrl",fileUrl);
 
         return success(result);
     }

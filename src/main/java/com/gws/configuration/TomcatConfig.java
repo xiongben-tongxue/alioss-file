@@ -21,7 +21,7 @@ import javax.servlet.MultipartConfigElement;
 @Configuration
 public class TomcatConfig {
 
-	@Value("${spring.server.port}")
+	@Value("${server.port}")
 	private String port;
 	@Value("${spring.server.acceptorThreadCount}")
 	private String acceptorThreadCount;
