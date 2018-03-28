@@ -82,7 +82,7 @@ public class OssController extends BaseController {
      * @return
      */
     @RequestMapping("uploadFiles")
-    public JsonResult uploadFiles(@RequestParam("files") MultipartFile[] files, String bucket){
+    public JsonResult uploadFiles(@RequestPart("files") MultipartFile[] files, String bucket){
 
         List<String> result = aliossService.uploadFiles(files,bucket);
 
